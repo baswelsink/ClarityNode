@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ClarityNode": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
