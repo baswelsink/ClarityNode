@@ -5,7 +5,12 @@ namespace ClarityNode
     {
         static async Task Main(string[] args)
         {
-            HttpClient client = new HttpClient();
+            var httpClientHandler = new HttpClientHandler();
+            // Return `true` to allow certificates that are untrusted/invalid
+            httpClientHandler.ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+            HttpClient client = new HttpClient(httpClientHandler);
             var result = await client.GetAsync($@"https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?startPeriod=2024-10-01&format=csvdata&endPeriod=2024-12-01", HttpCompletionOption.ResponseHeadersRead);
             if(result.IsSuccessStatusCode)
             {
