@@ -1,4 +1,7 @@
 ﻿
+using ClarityNode.Models;
+using System.Net.Http.Json;
+
 namespace ClarityNode
 {
     internal class Program
@@ -23,11 +26,12 @@ namespace ClarityNode
                 }
             }
 
-            result = await client.GetAsync($@"https://192.168.2.157:5844/api/ExchangeRates/1", HttpCompletionOption.ResponseHeadersRead);
+            result = await client.GetAsync($@"https://192.168.2.157:5844/api/ExchangeRates/BaseCurrency/14/CounterCurrency/15/Latest", HttpCompletionOption.ResponseHeadersRead);
 
             if (result.IsSuccessStatusCode)
             {
-                Console.WriteLine("Succes");
+                var exchangeRate = await result.Content.ReadFromJsonAsync<ExchangeRate>();
+                Console.WriteLine($"{exchangeRate.StartDateTime} {exchangeRate.Value}");
             }
             else
             {
