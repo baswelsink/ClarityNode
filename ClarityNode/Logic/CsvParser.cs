@@ -22,15 +22,13 @@ namespace ClarityNode.Logic
                         break;
                     }
 
-                    char ch = (char)nextChar;
-
-                    if (nextChar == '"')
+                    if (nextChar == textQualifier)
                     {
                         isTextQualified = !isTextQualified;
                     }
                     else
                     {
-                        if(nextChar == ',')
+                        if(nextChar == separator)
                         {
                             if (!isTextQualified) 
                             {
