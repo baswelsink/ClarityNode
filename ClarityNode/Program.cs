@@ -1,4 +1,5 @@
 ﻿
+using ClarityNode.Logic;
 using ClarityNode.Models;
 using System.Net.Http.Json;
 
@@ -21,6 +22,7 @@ namespace ClarityNode
                 {
                     while(reader.ReadLine() is string line)
                     {
+                        var res = CsvParser.Parse(line, '"', ',');
                         Console.WriteLine(line);
                     }
                 }
